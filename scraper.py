@@ -6,9 +6,9 @@ class WebScraper:
     max_calls_per_minute = 20
 
     def __init__(self):
-        self.max_length = 0
+        self.urls = []
 
-    def scrape_website(self, urls):
+    def scrape_website(self, url):
         def extract_text(tags, attr=None):
             return [tag.get_text() if not attr else tag[attr] for tag in tags]
 
@@ -53,7 +53,8 @@ class WebScraper:
 
             data_from = soup.find('div', class_='source-header__container__label m-0 text-uppercase h4 font-weight-bold')
 
-        self.max_length = max(len(self.entities_text), len(self.jurisdiction_text), len(self.linked_to_text))
+        max_length = max(len(self.entities_text), len(self.jurisdiction_text), len(self.linked_to_text))
+        print("Maximum length of obtained data: ", max_length)
 
     def find_matches(self, entity_to_match):
         matching_entities = [entity for entity in self.entities_text if entity_to_match.lower() in entity.lower()]
