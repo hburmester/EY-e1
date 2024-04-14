@@ -1,8 +1,10 @@
 from scraper import WebScraper
 
 def main():
-    urls = ['https://offshoreleaks.icij.org/investigations/pandora-papers', 'https://offshoreleaks.icij.org/investigations/paradise-papers']
-    entities = ['Bancard']
+    url = 'https://offshoreleaks.icij.org'
+    sub_url = ['/investigations/pandora-papers', '/investigations/paradise-papers', '/investigations/panama-papers', '/investigations/bahamas-leaks', '/investigations/offshore-leaks']
+    urls = [url + str(sub_url[i]) for i in range(len(sub_url))]
+    entities = ['bancard', 'cabo verde']
     scraper = WebScraper()
 
     for url in urls:
